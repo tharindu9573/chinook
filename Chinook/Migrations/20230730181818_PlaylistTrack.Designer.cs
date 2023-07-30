@@ -3,6 +3,7 @@ using System;
 using Chinook;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chinook.Migrations
 {
     [DbContext(typeof(ChinookContext))]
-    partial class ChinookContextModelSnapshot : ModelSnapshot
+    [Migration("20230730181818_PlaylistTrack")]
+    partial class PlaylistTrack
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
@@ -607,13 +610,13 @@ namespace Chinook.Migrations
             modelBuilder.Entity("Chinook.Models.PlaylistTrack", b =>
                 {
                     b.HasOne("Chinook.Models.Playlist", "Playlist")
-                        .WithMany("PlaylistTrack")
+                        .WithMany()
                         .HasForeignKey("PlaylistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Chinook.Models.Track", "Track")
-                        .WithMany("PlaylistTrack")
+                        .WithMany()
                         .HasForeignKey("TrackId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -772,16 +775,12 @@ namespace Chinook.Migrations
 
             modelBuilder.Entity("Chinook.Models.Playlist", b =>
                 {
-                    b.Navigation("PlaylistTrack");
-
                     b.Navigation("UserPlaylists");
                 });
 
             modelBuilder.Entity("Chinook.Models.Track", b =>
                 {
                     b.Navigation("InvoiceLines");
-
-                    b.Navigation("PlaylistTrack");
                 });
 #pragma warning restore 612, 618
         }

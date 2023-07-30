@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Chinook.Models;
+﻿using Chinook.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Chinook;
 
@@ -29,6 +26,7 @@ public partial class ChinookContext : IdentityDbContext<ChinookUser>
     public virtual DbSet<Playlist> Playlists { get; set; } = null!;
     public virtual DbSet<Track> Tracks { get; set; } = null!;
     public virtual DbSet<UserPlaylist> UserPlaylists { get; set; } = null!;
+    public virtual DbSet<PlaylistTrack> PlaylistTracks { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
